@@ -1,5 +1,6 @@
 package test_practic2.eim.systems.cs.pub.ro.practicaltest02;
 
+import android.util.Log;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -30,7 +31,7 @@ public class ClientThread extends Thread {
         try {
             socket = new Socket("localhost", port);
             if(socket == null) {
-                // error
+                Log.e("[CLIENT THREAD]", "error!\n");
                 return;
             }
             BufferedReader bufferedReader = Utils.getReader(socket);
@@ -56,13 +57,13 @@ public class ClientThread extends Thread {
             });
 
         } catch (IOException io) {
-            // Log.e();
+            Log.e("[CLIENT THREAD]", "error!\n");
         } finally {
             if(socket != null) {
                 try {
                     socket.close();
                 } catch (IOException io) {
-                    // Log.e();
+                    Log.e("[CLIENT THREAD]", "error!\n");
                 }
             }
         }

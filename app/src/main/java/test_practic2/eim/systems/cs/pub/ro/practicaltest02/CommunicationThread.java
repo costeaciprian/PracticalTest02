@@ -1,5 +1,7 @@
 package test_practic2.eim.systems.cs.pub.ro.practicaltest02;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,12 +46,14 @@ public class CommunicationThread extends Thread {
             BufferedReader bufferedReader = Utils.getReader(socket);
             PrintWriter printWriter = Utils.getWriter(socket);
             if (null == bufferedReader || null == printWriter) {
+                Log.e("[COMMUNICATION THREAD]", "error!\n");
                 // error
                 return;
             }
 
             String userQuery = bufferedReader.readLine();
             if (null == userQuery || userQuery.isEmpty()) {
+                Log.e("[COMMUNICATION THREAD]", "error!\n");
                 return; // error
             }
 
@@ -69,7 +73,7 @@ public class CommunicationThread extends Thread {
             printWriter.flush();
 
         } catch (IOException io) {
-            // Log.e();
+            Log.e("[COMMUNICATION THREAD]", "Caught exception!\n");
             io.printStackTrace();
         }  finally {
             if(socket != null) {

@@ -1,5 +1,7 @@
 package test_practic2.eim.systems.cs.pub.ro.practicaltest02;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -29,7 +31,7 @@ public class ServerThread extends Thread {
         try {
             serverSocket = new ServerSocket(port);
         } catch (IOException io) {
-            // Log.e(MathsMainActivity.TAG, "An exception has occurred: " + io.getMessage());
+            Log.e("[SERVER THREAD]", "exception occured!\n");
         }
         cache = new HashMap<>();
     }
@@ -40,7 +42,7 @@ public class ServerThread extends Thread {
             try {
                 serverSocket.close();
             } catch (IOException io) {
-                // Log.e();
+                Log.e("[SERVER THREAD]", "error!\n");
             }
         }
     }
@@ -54,7 +56,7 @@ public class ServerThread extends Thread {
                 new Thread(communicationThread).start();
             }
         } catch (Exception ex) {
-            // Log.e
+            Log.e("[SERVER THREAD]", "error!\n");
         }
     }
 
